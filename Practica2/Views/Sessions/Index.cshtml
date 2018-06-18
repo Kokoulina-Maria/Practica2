@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Practica2.Models.Session>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1>Сеансы</h1>
+
+<p>
+    @Html.ActionLink("Добавить сеанс", "Create") |
+    @Html.ActionLink("Поиск", "Find") |
+    @Html.ActionLink("Выгрузить отчет", "ExportToExcel", new { back = "Index" })
+</p>
+<PRE>
+		
+</PRE>
+<div>
+    <center>
+        <table>
+            <tr>
+                <th>
+                    Цена (руб.)
+                </th>
+                <th>
+                    Дата и время
+                </th>
+                <th>
+                    Фильм
+                </th>
+                <th>
+                    Зал
+                </th>
+                <th>
+                    Кинотеатр
+                </th>
+                <th>
+                    Город
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    &nbsp;
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    &nbsp;
+                    @item.Time.Day.@item.Time.Month.@item.Time.Year &nbsp; @item.Time.Hour:@item.Time.Minute
+                </td>
+                <td>
+                    &nbsp;
+                    @Html.DisplayFor(modelItem => item.Film.Name)
+                </td>
+                <td>
+                    &nbsp;
+                    @Html.DisplayFor(modelItem => item.Hall.Num)
+                </td>
+                <td>
+                    &nbsp;
+                    @Html.DisplayFor(modelItem => item.Hall.Cinema.Name)
+                </td>
+                <td>
+                    &nbsp;
+                    @Html.DisplayFor(modelItem => item.Hall.Cinema.City)
+                </td>
+                <td>
+                    &nbsp;
+                    @Html.ActionLink("Список мест", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Редактировать", "Edit", new { id = item.ID}) |
+                    @Html.ActionLink("Удалить", "Delete", new { id = item.ID, back = "Index" })
+                </td>
+            </tr>
+            }
+
+        </table>
+    </center>
+</div>

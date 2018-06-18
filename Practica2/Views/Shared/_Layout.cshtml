@@ -1,43 +1,50 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title – приложение ASP.NET</title>
-    @Styles.Render("~/Content/css")
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    <title>Cinema</title>
+    @Styles.Render("~/Content/Site.css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Имя приложения", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    <center>
+        @Html.ActionLink("Начальная страница", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        @Html.ActionLink("Сеансы", "Index", "Sessions")
+        &nbsp;
+        &nbsp;
+        @Html.ActionLink("Фильмы", "Index", "Films")
+        &nbsp;
+        &nbsp;
+        @Html.ActionLink("Кинотеатры", "Index", "Cinemas")
+        &nbsp;
+        &nbsp;
+        @Html.ActionLink("Залы", "Index", "Halls")
+        &nbsp;
+        &nbsp;
+        @Html.ActionLink("Кассиры", "Index", "Cashiers")
+        &nbsp;
+        &nbsp;
+        @Html.ActionLink("Билеты", "Index", "Tickets")
+        &nbsp;
+        &nbsp;
+        @Html.ActionLink("Брони", "Index", "Bookings")
+    </center>
+            <div class="container body-content">
+                @RenderBody()
+                <hr />
+                <footer>
+                    <p>&copy; @DateTime.Now.Year – приложение ASP.NET</p>
+                </footer>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Домашняя страница", "Index", "Home")</li>
-                    <li>@Html.ActionLink("О программе", "About", "Home")</li>
-                    <li>@Html.ActionLink("Контакт", "Contact", "Home")</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year – приложение ASP.NET</p>
-        </footer>
-    </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+            @Scripts.Render("~/bundles/jquery")
+            @Scripts.Render("~/bundles/bootstrap")
+            @RenderSection("scripts", required: false)
 </body>
 </html>

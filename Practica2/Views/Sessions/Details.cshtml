@@ -1,0 +1,111 @@
+﻿@model Practica2.Models.Session
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h1>Сеанс</h1>
+
+<FORM>
+    <FIELDSET>
+        <LEGEND><A name="ask"></A></LEGEND>
+        <p>
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            Цена билета:
+            @Html.DisplayFor(model => model.Price) рублей
+            <BR>
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            Время:
+            @Html.DisplayFor(model => model.Time.Day).@Html.DisplayFor(model => model.Time.Month).@Html.DisplayFor(model => model.Time.Year)&nbsp;@Html.DisplayFor(model => model.Time.Hour):@Html.DisplayFor(model => model.Time.Minute)
+            <BR>
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            Фильм:
+            @Html.DisplayFor(model => model.Film.Name)
+            <BR>
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            Зал:
+            @Html.DisplayFor(model => model.Hall.Num)
+            <BR>
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            Кинотеатр:
+            @Html.DisplayFor(model => model.Hall.Cinema.Name)
+            <BR>
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            Город:
+            @Html.DisplayFor(model => model.Hall.Cinema.City)
+        </p>
+    </FIELDSET>
+</FORM>
+<PRE>
+		
+</PRE>
+<center>
+    <table class="table">
+        <tr>
+            <th>Ряд</th>
+            <th>Место</th>
+            <th>Состояние</th>
+        </tr>
+        @foreach (var item in Model.Seat)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberOfRow)
+                    &nbsp;
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberOfSeat)
+                </td>
+                <td>
+                    &nbsp;
+                    @Html.DisplayFor(modelItem => item.State)
+                    &nbsp;
+                </td>
+                @if (item.State == "Свободно")
+                {
+                    <td>
+                        @Html.ActionLink("Занять", "Zanat", new { id = item.ID }) |
+                        @Html.ActionLink("Забронировать", "Bron", new { id = item.ID })
+                    </td>
+                }
+                @if (item.State == "Занято")
+                {
+                    <td>
+                        @Html.ActionLink("Забронировать", "Bron", new { id = item.ID }) |
+                        @Html.ActionLink("Освободить", "Osvobodit", new { id = item.ID })
+                    </td>
+                }
+                @if (item.State == "Забронировано")
+                {
+                    <td>
+                        @Html.ActionLink("Освободить", "Osvobodit", new { id = item.ID }) |
+                        @Html.ActionLink("Занять", "Zanat", new { id = item.ID })
+                    </td>
+                }
+            </tr>
+        }
+
+    </table>
+</center>
+<p>
+    @Html.ActionLink("Редактировать", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Вернуться к списку сеансов", "Index")
+</p>

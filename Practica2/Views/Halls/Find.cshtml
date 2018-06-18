@@ -1,0 +1,122 @@
+﻿@model IEnumerable<Practica2.Models.Hall>
+
+@{
+    ViewBag.Title = "Find";
+}
+
+@using (Html.BeginForm())
+{
+    <h1>Поиск залов</h1>
+    <FORM>
+        <FIELDSET>
+            <LEGEND><A name="Find">Критерии поиска</A></LEGEND>
+            <p>
+                <select name="Entity">
+                    <option value="Город"> Город
+                    <option value="Кинотеатр"> Кинотеатр
+                    <option value="Номер зала"> Номер зала
+                    <option value="Тип зала"> Тип зала
+                    <option value="Количество рядов"> Количество рядов
+                    <option value="Количество мест в ряду"> Количество мест в ряду
+</select>
+                <select name="Sign">
+                    <option value="="> =
+                    <option value="!="> !=
+                    <option value=">"> >
+                    <option value="<"> <
+                    <option value=">="> >=
+                    <option value="<="> <=
+                </select>
+                @Html.TextBox("Text")
+                @Html.ValidationMessage("Exception")
+            </p>
+            <p>
+                <select name="Extra">
+                    <option value="И"> И
+                    <option value="ИЛИ"> ИЛИ
+                </select>
+                <input type="submit" value="Поиск">
+            </p>
+        </FIELDSET>
+    </FORM>
+<PRE>
+		
+</PRE>
+    <p>
+        @Html.ActionLink("Выгрузить отчет", "ExportToExcel", new { back = "Find" })
+    </p>
+    <div>
+        <center>
+            <table>
+                <tr>
+                    <th>
+                        Номер
+                    </th>
+                    <th>
+                        Тип
+                    </th>
+                    <th>
+                        Количество рядов
+                    </th>
+                    <th>
+                        Количество мест в ряду
+                    </th>
+                    <th>
+                        Кинотеатр
+                    </th>
+                    <th>
+                        Удален
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            &nbsp;
+                            @Html.DisplayFor(modelItem => item.Num)
+                        </td>
+                        <td>
+                            &nbsp;
+                            @Html.DisplayFor(modelItem => item.Type)
+                        </td>
+                        <td>
+                            &nbsp;
+                            @Html.DisplayFor(modelItem => item.AmountOfRow)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AmountOfSeats)
+                        </td>
+                        <td>
+                            &nbsp;
+                            @Html.DisplayFor(modelItem => item.Cinema.Name)
+                        </td>
+                        <td>
+                            &nbsp;
+                            @Html.DisplayFor(modelItem => item.Deleted)
+                        </td>
+                        @if (item.Deleted == false)
+                        {
+                            <td>
+                                &nbsp;
+                                @Html.ActionLink("Редактировать", "Edit", new { id = item.ID }) |
+                                @Html.ActionLink("Удалить", "Delete", new { id = item.ID, back = "Find" })
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                                &nbsp;
+                                @Html.ActionLink("Редактировать", "Edit", new { id = item.ID }) |
+                                @Html.ActionLink("Удалить", "Restore", new { id = item.ID, back = "Find" })
+                            </td>
+                        }
+                    </tr>
+                }
+
+            </table>
+        </center>
+    </div>
+}
+

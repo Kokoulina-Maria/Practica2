@@ -1,24 +1,97 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    background-color: Black;
+    text-align: center;
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+H1 {
+    color: PapayaWhip;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: "Franklin Gothic Heavy";
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
+H2 {
+    color: PapayaWhip;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: "Franklin Gothic Heavy";
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+P {
+    color: FloralWhite;
+    text-align: left;
+    font-family: Arial;
+}
+
+UL {
+    color: FloralWhite;
+    text-align: left;
+    font-family: Arial;
+    list-style-type: square;
+}
+
+table {
+    border-color: PapayaWhip;
+    border-style: dashed;
+    text-align: center;
+    font-size: large;
+    font-family: Arial;
+    color: FloralWhite;
+    background-size: contain;
+    position: center;
+}
+
+td, th {
+    border-color: PapayaWhip;
+    border-style: solid;
+    border-width: thin;
+}
+
+IMG {
+    border-width: 1px;
+    border-color: PapayaWhip;
+    border-style: inset;
+    position: center;
+}
+
+Form {
+    color: FloralWhite;
+    text-align: left;
+    font-family: Arial;
+}
+
+A:link {
+    color: FloralWhite;
+    font-family: Arial;
+    font-size: large;
+    text-decoration: none;
+}
+
+A:visited {
+    color: FloralWhite;
+    font-family: Arial;
+}
+
+A:hover {
+    color: FloralWhite;
+    font-family: Arial;
+}
+
+A:active {
+    color: FloralWhite;
+    font-family: Arial;
+}
+
+DL {
+    color: FloralWhite;
+    text-align: left;
+    font-family: Arial;
+}
+
+OL {
+    color: FloralWhite;
+    text-align: left;
+    font-family: Arial;
+    list-style-type: upper-roman;
 }

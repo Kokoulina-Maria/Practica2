@@ -1,0 +1,89 @@
+﻿@model IEnumerable<Practica2.Models.Hall>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1>Залы</h1>
+
+<p>
+    @Html.ActionLink("Добавить зал", "Create") |
+    @Html.ActionLink("Поиск", "Find") |
+    @Html.ActionLink("Выгрузить отчет", "ExportToExcel", new { back = "Index" })
+</p>
+<PRE>
+		
+</PRE>
+<div>
+    <center>
+        <table>
+            <tr>
+                <th>
+                    Номер
+                </th>
+                <th>
+                    Тип
+                </th>
+                <th>
+                    Количество рядов
+                </th>
+                <th>
+                    Количество мест в ряду
+                </th>
+                <th>
+                    Кинотеатр
+                </th>
+                <th>
+                    Удален
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        &nbsp;
+                        @Html.DisplayFor(modelItem => item.Num)
+                    </td>
+                    <td>
+                        &nbsp;
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </td>
+                    <td>
+                        &nbsp;
+                        @Html.DisplayFor(modelItem => item.AmountOfRow)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AmountOfSeats)
+                    </td>
+                    <td>
+                        &nbsp;
+                        @Html.DisplayFor(modelItem => item.Cinema.Name)
+                    </td>
+                    <td>
+                        &nbsp;
+                        @Html.DisplayFor(modelItem => item.Deleted)
+                    </td>
+                    @if (item.Deleted == false)
+                    {
+                    <td>
+                        &nbsp;
+                        @Html.ActionLink("Редактировать", "Edit", new { id = item.ID }) |
+                        @Html.ActionLink("Удалить", "Delete", new { id = item.ID, back="Index" })
+                    </td>
+                    }
+                    else
+                    {
+                    <td>
+                        &nbsp;
+                        @Html.ActionLink("Редактировать", "Edit", new { id = item.ID }) |
+                        @Html.ActionLink("Удалить", "Restore", new { id = item.ID, back="Index" })
+                    </td>
+                    }
+                </tr>
+            }
+
+        </table>
+    </center>
+</div>

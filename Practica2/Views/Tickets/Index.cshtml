@@ -1,0 +1,86 @@
+﻿@model IEnumerable<Practica2.Models.Ticket>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1>Проданные билеты</h1>
+
+<p>
+    @Html.ActionLink("Поиск", "Find") |
+    @Html.ActionLink("Выгрузить отчет", "ExportToExcel", new { back = "Index" })
+</p>
+<PRE>
+		
+</PRE>
+<div>
+    <center>
+        <table>
+            <tr>
+                <th>
+                    Номер
+                </th>
+                <th>
+                    Ряд
+                </th>
+                <th>
+                    Место
+                </th>
+                <th>
+                    Цена
+                </th>
+                <th>
+                    Фильм
+                </th>
+                <th>
+                    Зал
+                </th>
+                <th>
+                    Кинотеатр
+                </th>
+                <th>
+                    Дата и время
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        &nbsp;
+                        @Html.DisplayFor(modelItem => item.Number)
+                    </td>
+                    <td>
+                        &nbsp;
+                        @Html.DisplayFor(modelItem => item.Seat.NumberOfRow)
+                    </td>
+                    <td>
+                        &nbsp;
+                        @Html.DisplayFor(modelItem => item.Seat.NumberOfSeat)
+                    </td>
+                    <td>
+                        &nbsp;
+                        @Html.DisplayFor(modelItem => item.Seat.Session.Price)
+                    </td>
+                    <td>
+                        &nbsp;
+                        @Html.DisplayFor(modelItem => item.Seat.Session.Film.Name)
+                    </td>
+                    <td>
+                        &nbsp;
+                        @Html.DisplayFor(modelItem => item.Seat.Session.Hall.Num)
+                    </td>
+                    <td>
+                        &nbsp;
+                        @Html.DisplayFor(modelItem => item.Seat.Session.Hall.Cinema.Name)
+                    </td>
+                    <td>
+                        &nbsp;
+                        @Html.DisplayFor(modelItem => item.Seat.Session.Time)
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </center>
+</div>

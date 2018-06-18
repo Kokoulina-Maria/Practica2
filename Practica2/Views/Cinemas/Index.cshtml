@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Practica2.Models.Cinema>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1>Кинотеатры: </h1>
+
+<p>
+    @Html.ActionLink("Добавить кинотеатр", "Create") |
+    @Html.ActionLink("Поиск", "Find") |
+    @Html.ActionLink("Выгрузить отчет", "ExportToExcel", new { back = "Index" })
+</p>
+<PRE>
+		
+</PRE>
+<div>
+    <center>
+        <table>
+            <tr>
+                <th>
+                    Адрес
+                </th>
+                <th>
+                    Название
+                </th>
+                <th>
+                    Город
+                </th>
+                <th>
+                    Удален
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        &nbsp;
+                        @Html.DisplayFor(modelItem => item.Adress)
+                    </td>
+                    <td>
+                        &nbsp;
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        &nbsp;
+                        @Html.DisplayFor(modelItem => item.City)
+                    </td>
+                    <td>
+                        &nbsp;
+                        @Html.DisplayFor(modelItem => item.Deleted)
+                    </td>
+                    @if (item.Deleted == false)
+                    {
+                    <td>
+                        &nbsp;
+                        @Html.ActionLink("Редактировать", "Edit", new { id = item.ID }) |
+                        @Html.ActionLink("Удалить", "Delete", new { id = item.ID, back="Index" })
+                    </td>
+                    }
+                    else
+                    {
+                    <td>
+                        &nbsp;
+                        @Html.ActionLink("Реадактировать", "Edit", new { id = item.ID }) |
+                        @Html.ActionLink("Восстановить", "Restore", new { id = item.ID, back="Index" })
+                    </td>
+                    }
+                </tr>
+            }
+        </table>
+    </center>
+</div>
+

@@ -1,0 +1,91 @@
+﻿@model IEnumerable<Practica2.Models.Cashier>
+
+@{
+    ViewBag.Title = "Find";
+}
+
+@using (Html.BeginForm())
+{
+    <h1>Поиск кассиров</h1>
+    <FORM>
+        <FIELDSET>
+            <LEGEND><A name="Find">Критерии поиска</A></LEGEND>
+            <p>
+                <select name="Entity">
+                    <option value="Город"> Город
+                    <option value="Кинотеатр"> Кинотеатр
+                    <option value="ФИО"> ФИО
+                    <option value="Логин"> Логин
+</select>
+                <select name="Sign">
+                    <option value="="> =
+                    <option value="!="> !=
+                </select>
+                @Html.TextBox("Text")
+                @Html.ValidationMessage("Exception")
+            </p>
+            <p>
+                <select name="Extra">
+                    <option value="И"> И
+                    <option value="ИЛИ"> ИЛИ
+                </select>
+                <input type="submit" value="Поиск">
+            </p>
+        </FIELDSET>
+    </FORM>
+<PRE>
+		
+</PRE>
+    <p>
+        @Html.ActionLink("Выгрузить отчет", "ExportToExcel", new { back = "Find" })
+    </p>
+    <div>
+        <center>
+            <table>
+                <tr>
+                    <th>
+                        ФИО
+                    </th>
+                    <th>
+                        Логин
+                    </th>
+                    <th>
+                        Пароль
+                    </th>
+                    <th>
+                        Кинотеатр
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            &nbsp;
+                            @Html.DisplayFor(modelItem => item.FIO)
+                        </td>
+                        <td>
+                            &nbsp;
+                            @Html.DisplayFor(modelItem => item.Login)
+                        </td>
+                        <td>
+                            &nbsp;
+                            @Html.DisplayFor(modelItem => item.Password)
+                        </td>
+                        <td>
+                            &nbsp;
+                            @Html.DisplayFor(modelItem => item.Cinema.Name)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Редактирвать", "Edit", new { id = item.ID }) |
+                            @Html.ActionLink("Удалить", "Delete", new { id = item.ID, back = "Find" })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </center>
+    </div>
+}
+

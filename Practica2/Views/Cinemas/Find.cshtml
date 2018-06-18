@@ -1,0 +1,101 @@
+﻿@model IEnumerable<Practica2.Models.Cinema>
+
+@{
+    ViewBag.Title = "Find";
+}
+
+@using (Html.BeginForm())
+{
+    <h1>Поиск кинотеатров</h1>
+    <FORM>
+        <FIELDSET>
+            <LEGEND><A name="Find">Критерии поиска</A></LEGEND>
+            <p>
+                <select name="Entity">
+                    <option value="Город"> Город
+                    <option value="Название"> Название
+                    <option value="Адрес"> Адрес
+                </select>
+                <select name="Sign">
+                    <option value="="> =
+                    <option value="!="> !=
+                </select>
+                @Html.TextBox("Text")
+                @Html.ValidationMessage("Exception")
+            </p>
+            <p>
+                <select name="Extra">
+                    <option value="И"> И
+                    <option value="ИЛИ"> ИЛИ
+                </select>
+                <input type="submit" value="Поиск">
+            </p>
+        </FIELDSET>
+    </FORM>
+<PRE>
+		
+</PRE>
+    <p>
+        @Html.ActionLink("Выгрузить отчет", "ExportToExcel", new { back = "Find" })
+    </p>
+    <div>
+        <center>
+            <table>
+                <tr>
+                    <th>
+                        Адрес
+                    </th>
+                    <th>
+                        Название
+                    </th>
+                    <th>
+                        Город
+                    </th>
+                    <th>
+                        Удален
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            &nbsp;
+                            @Html.DisplayFor(modelItem => item.Adress)
+                        </td>
+                        <td>
+                            &nbsp;
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            &nbsp;
+                            @Html.DisplayFor(modelItem => item.City)
+                        </td>
+                        <td>
+                            &nbsp;
+                            @Html.DisplayFor(modelItem => item.Deleted)
+                        </td>
+                        @if (item.Deleted == false)
+                        {
+                            <td>
+                                &nbsp;
+                                @Html.ActionLink("Редактировать", "Edit", new { id = item.ID }) |
+                                @Html.ActionLink("Удалить", "Delete", new { id = item.ID, back = "Find" })
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                                &nbsp;
+                                @Html.ActionLink("Реадактировать", "Edit", new { id = item.ID }) |
+                                @Html.ActionLink("Восстановить", "Restore", new { id = item.ID, back = "Find" })
+                            </td>
+                        }
+                    </tr>
+                }
+            </table>
+        </center>
+    </div>
+}
+

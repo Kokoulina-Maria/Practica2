@@ -1,0 +1,61 @@
+﻿@model Practica2.Models.Film
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h1>Добавление фильма</h1>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <p>
+        Название: @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+    </p>
+    <p>
+        Описание:<BR>
+        <Textarea rows=7 cols=50 name="Description">
+		        </Textarea>
+        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+    </p>
+    <p>
+        Год: @Html.EditorFor(model => model.Year, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Year, "", new { @class = "text-danger" })
+    </p>
+
+    <p>
+    Длительность: @Html.EditorFor(model => model.length, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationMessageFor(model => model.length, "", new { @class = "text-danger" })
+    </p>
+
+    <p>
+        Возрастное ограничение: <select name="AgeLimit">
+            <option value="0+"> 0+
+            <option value="6+"> 6+
+            <option value="12+"> 12+
+            <option value="16+"> 16+
+            <option value="18+"> 18+
+        </select>
+        @Html.ValidationMessageFor(model => model.AgeLimit, "", new { @class = "text-danger" })
+    </p>
+
+    <p>
+        Режиссер: @Html.EditorFor(model => model.Producer, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Producer, "", new { @class = "text-danger" })
+    </p>
+
+
+            <input type="submit" value="Добавить" class="btn btn-default" />
+}
+
+<p>
+    @Html.ActionLink("Вернуться к списку фильмов", "Index")
+</p>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

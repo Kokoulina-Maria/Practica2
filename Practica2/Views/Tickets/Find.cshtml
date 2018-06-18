@@ -1,0 +1,134 @@
+﻿@model IEnumerable<Practica2.Models.Ticket>
+
+@{
+    /**/
+
+    ViewBag.Title = "Find";
+}
+
+@using (Html.BeginForm())
+{
+    <h1>Поиск билетов</h1>
+    <FORM>
+        <FIELDSET>
+            <LEGEND><A name="Find">Критерии поиска</A></LEGEND>
+            <p>
+                <select name="Entity">
+                    <option value="Фильм"> Фильм
+                    <option value="Год"> Год
+                    <option value="Длительность"> Длительность
+                    <option value="Возрастное ограничение"> Возрастное ограничение
+                    <option value="Режиссер"> Режиссер
+                    <option value="Город"> Город
+                    <option value="Кинотеатр"> Кинотеатр
+                    <option value="Номер зала"> Номер зала
+                    <option value="Тип зала"> Тип зала
+                    <option value="Дата"> Дата
+                    <option value="Цена"> Цена
+                    <option value="Время"> Время
+                    <option value="Номер"> Номер
+                    <option value="Ряд"> Ряд
+                    <option value="Номер в ряду"> Номер в ряду
+</select>
+                <select name="Sign">
+                    <option value="="> =
+                    <option value="!="> !=
+                    <option value=">"> >
+                    <option value="<"> <
+                    <option value=">="> >=
+                    <option value="<="> <=
+                </select>
+                @Html.TextBox("Text")
+                @Html.ValidationMessage("Exception")
+            </p>
+            <p>
+                <select name="Extra">
+                    <option value="И"> И
+                    <option value="ИЛИ"> ИЛИ
+                </select>
+                <input type="submit" value="Поиск">
+            </p>
+        </FIELDSET>
+    </FORM>
+<PRE>
+		
+</PRE>
+<p>
+    @Html.ActionLink("Выгрузить отчет", "ExportToExcel", new { back = "Find" })
+</p>
+    <PRE>
+		
+</PRE>
+    <div>
+        <center>
+            <table>
+                <tr>
+                    <th>
+                        Номер
+                    </th>
+                    <th>
+                        Ряд
+                    </th>
+                    <th>
+                        Место
+                    </th>
+                    <th>
+                        Цена
+                    </th>
+                    <th>
+                        Фильм
+                    </th>
+                    <th>
+                        Зал
+                    </th>
+                    <th>
+                        Кинотеатр
+                    </th>
+                    <th>
+                        Дата и время
+                    </th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            &nbsp;
+                            @Html.DisplayFor(modelItem => item.Number)
+                        </td>
+                        <td>
+                            &nbsp;
+                            @Html.DisplayFor(modelItem => item.Seat.NumberOfRow)
+                        </td>
+                        <td>
+                            &nbsp;
+                            @Html.DisplayFor(modelItem => item.Seat.NumberOfSeat)
+                        </td>
+                        <td>
+                            &nbsp;
+                            @Html.DisplayFor(modelItem => item.Seat.Session.Price)
+                        </td>
+                        <td>
+                            &nbsp;
+                            @Html.DisplayFor(modelItem => item.Seat.Session.Film.Name)
+                        </td>
+                        <td>
+                            &nbsp;
+                            @Html.DisplayFor(modelItem => item.Seat.Session.Hall.Num)
+                        </td>
+                        <td>
+                            &nbsp;
+                            @Html.DisplayFor(modelItem => item.Seat.Session.Hall.Cinema.Name)
+                        </td>
+                        <td>
+                            &nbsp;
+                            @Html.DisplayFor(modelItem => item.Seat.Session.Time)
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </center>
+    </div>
+}
+

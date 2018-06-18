@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Practica2.Models.Cashier>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1>Кассиры</h1>
+
+<p>
+    @Html.ActionLink("Добавить кассира", "Create") |
+    @Html.ActionLink("Поиск", "Find") |
+    @Html.ActionLink("Выгрузить отчет", "ExportToExcel", new { back = "Index" })
+</p>
+<PRE>
+		
+</PRE>
+<div>
+    <center>
+        <table>
+            <tr>
+                <th>
+                    ФИО
+                </th>
+                <th>
+                    Логин
+                </th>
+                <th>
+                    Пароль
+                </th>
+                <th>
+                    Кинотеатр
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        &nbsp;
+                        @Html.DisplayFor(modelItem => item.FIO)
+                    </td>
+                    <td>
+                        &nbsp;
+                        @Html.DisplayFor(modelItem => item.Login)
+                    </td>
+                    <td>
+                        &nbsp;
+                        @Html.DisplayFor(modelItem => item.Password)
+                    </td>
+                    <td>
+                        &nbsp;
+                        @Html.DisplayFor(modelItem => item.Cinema.Name)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Редактирвать", "Edit", new { id = item.ID }) |
+                        @Html.ActionLink("Удалить", "Delete", new { id = item.ID, back="Index" })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </center>
+</div>

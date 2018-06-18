@@ -1,0 +1,58 @@
+﻿@model Practica2.Models.Film
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h1>@Html.DisplayNameFor(model => model.Name)</h1>
+
+<FORM>
+    <FIELDSET>
+        <LEGEND><A name="ask"></A></LEGEND>
+        <p>
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            Год:
+            @Html.DisplayFor(model => model.Year)
+            <BR>
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            Длительность:
+            @Html.DisplayFor(model => model.length) мин.
+            <BR>
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            Возрастное оганичение:
+            @Html.DisplayFor(model => model.AgeLimit)
+            <BR>
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            Режиссер:
+            @Html.DisplayFor(model => model.Producer)
+            <BR>
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            Описание:
+            <BR>
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            @Html.DisplayFor(model => model.Description)
+        </p>
+    </FIELDSET>
+</FORM>
+<p>
+    @Html.ActionLink("Редактировать", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Вернуться к списку сеансов", "Index")
+</p>
